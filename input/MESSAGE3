@@ -1,0 +1,34 @@
+Voici quelques information relatives au projet :
+
+                        A propos de la triangulation
+                        ----------------------------
+
+ Rappel preliminaire :
+ Le fichier de donnees impose une numerotation des points. Pour obtenir la meme
+numerotation dans Matlab, le plus simple est de reordonner les points apres
+lecture : utiliser pour cela la commande sortrows.
+
+ Une fois la triangulation (tri) construite avec Matlab, il faut la sauvegarder
+dans un fichier ascii pour la relire avec l'application "externe" (votre programme).
+ Si on utilise la commande "save NOMFIC tri -ascii", le fichier contient
+des numeros de points sous forme reelle, qu'il faudrait alors lire en reel puis
+convertir en entier, ce qui n'est pas du tout la bonne solution.
+
+ Voici des commandes Matlab permettant de creer directement un fichier contenant
+des valeurs entieres.
+
+% Generation d'un fichier d'entiers contenant la triangulation
+fictri = 'listri.dat';
+[fid, message] = fopen(fictri,'w');
+if (fid < 0) error([message,' (fichier ',fictri,')']), end
+fprintf(fid,'%d %d %d\n',tri');
+fclose(fid);
+
+                        A propos du calcul de l'interpolant
+                        -----------------------------------
+
+ Vous trouverez dans le fichier /usr/local/ananum/cao/hct.val
+la valeur de l'interpolant en chacun des points demandes.
+
+ Vous trouverez dans le fichier /usr/local/ananum/cao/COEFF.hct
+les valeurs des coefficients.
