@@ -20,7 +20,7 @@ public:
     point(int id, double m_x, double m_y);
     point(const point& other);
 
-    bool operator<(const point& other);
+    bool operator<(const point& other) const;
 
     int get_id() const;
 

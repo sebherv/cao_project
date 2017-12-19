@@ -15,7 +15,7 @@ point::point(const point& other) : m_id(other.m_id),
                                    m_df_dx(other.m_df_dx) ,
                                    m_df_dy(other.m_df_dy) {}
 
-bool point::operator<(const point& other) {
+bool point::operator<(const point& other) const {
     return this->m_id < other.m_id;
 }
 

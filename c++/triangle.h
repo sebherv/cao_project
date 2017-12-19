@@ -18,8 +18,13 @@ private:
 
 public:
     triangle(int idTriangle, point pt1, point pt2, point pt3);
+    triangle(const triangle& other);
+    triangle( triangle&& other);
+    triangle& operator=(const triangle& other);
+    triangle& operator=(triangle&& other);
     void affiche();
 
+    void getPoint(int i);
 };
 
 
