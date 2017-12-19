@@ -1,14 +1,17 @@
 //
 // Created by Sebastien Hervieu on 18/12/2017.
 //
-
+#include <iostream>
 #include "triangle.h"
 
 
-void triangle::addPoint(point newPoint) {
-    if(m_points.size() < ms_MAX_POINT_NBR) {
-        m_points.push_back(newPoint);
-    } else {
-        throw triangle_exception("Too many points");
-    }
+triangle::triangle(int idTriangle, int idPt1, int idPt2, int idPt3) : id(idTriangle) {
+    m_pointIds.push_back(idPt1);
+    m_pointIds.push_back(idPt2);
+    m_pointIds.push_back(idPt3);
+}
+
+void triangle::affiche() {
+    std::cout << id << std::endl;
+
 }

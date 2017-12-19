@@ -9,24 +9,16 @@
 #include <vector>
 #include "point.h"
 
-class triangle_exception: public std::exception {
-private:
-    char* m_what;
-public:
-    triangle_exception(char* what): m_what(what) {};
-    virtual const char* what() const throw() {
-        return m_what;
-    }
-};
-
 
 class triangle {
 private:
-    const int ms_MAX_POINT_NBR = 3;
-    std::vector<point> m_points; // Liste des points constituant le triangle
+    int id;
+    std::vector<int> m_pointIds; // Liste des points constituant le triangle
 
 public:
-    void addPoint(point newPoint);
+    triangle(int idTriangle, int idPt1, int idPt2, int idPt3);
+    void affiche();
+
 };
 
 

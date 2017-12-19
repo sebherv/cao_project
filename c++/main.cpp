@@ -3,6 +3,8 @@
 #include <fstream>
 #include "point.h"
 #include "PointFileReader.h"
+#include "triangle.h"
+#include "TriangleFileReader.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -19,7 +21,12 @@ int main() {
     }
 
     // Read input triangulation
+    TriangleFileReader triangleFileReader("../../matlab/HCT.RES");
+    std::vector<triangle> triangleList = triangleFileReader.parse();
 
+    for(auto &current : triangleList ) {
+        current.affiche();
+    }
 
     return 0;
 }

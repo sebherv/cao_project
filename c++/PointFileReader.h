@@ -14,7 +14,6 @@ class PointFileReader {
 public:
     PointFileReader(std::string filename);
     std::vector<point> parse();
-
 };
 
 
