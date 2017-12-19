@@ -18,7 +18,17 @@ private:
 public:
     point(int id, double m_x, double m_y);
 
+    int get_id() const;
 
+    double get_x() const;
+
+    double get_y() const;
+
+    double get_f() const;
+
+    double get_df_dx() const;
+
+    double get_df_dy() const;
 };
 
 

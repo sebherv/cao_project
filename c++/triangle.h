@@ -22,7 +22,7 @@ public:
 
 class triangle {
 private:
-    const int ms_MAXSIZE = 3;
+    const int ms_MAX_POINT_NBR = 3;
     std::vector<point> m_points; // Liste des points constituant le triangle
 
 public:
