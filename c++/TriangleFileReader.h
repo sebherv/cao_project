@@ -12,9 +12,10 @@
 
 class TriangleFileReader {
     std::string mFileName;
+    std::vector<point> m_pointList;
 
 public:
-    TriangleFileReader(std::string filename);
+    TriangleFileReader(std::string filename, std::vector<point> pointList);
     std::vector<triangle> parse();
 };
 

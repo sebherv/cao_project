@@ -6,17 +6,18 @@
 #define C_TRIANGLE_H
 
 
-#include <vector>
 #include "point.h"
+#include <vector>
+#include <array>
 
 
 class triangle {
 private:
     int id;
-    std::vector<int> m_pointIds; // Liste des points constituant le triangle
+    std::array<point,3> m_points; // Liste des points constituant le triangle
 
 public:
-    triangle(int idTriangle, int idPt1, int idPt2, int idPt3);
+    triangle(int idTriangle, point pt1, point pt2, point pt3);
     void affiche();
 
 };

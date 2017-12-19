@@ -5,13 +5,13 @@
 #include "triangle.h"
 
 
-triangle::triangle(int idTriangle, int idPt1, int idPt2, int idPt3) : id(idTriangle) {
-    m_pointIds.push_back(idPt1);
-    m_pointIds.push_back(idPt2);
-    m_pointIds.push_back(idPt3);
+triangle::triangle(int idTriangle, point pt1, point pt2, point pt3) : id(idTriangle) {
+    m_points[0] = pt1;
+    m_points[1] = pt2;
+    m_points[2] = pt3;
+
 }
 
 void triangle::affiche() {
     std::cout << id << std::endl;
-
 }
