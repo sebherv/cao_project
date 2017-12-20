@@ -24,7 +24,14 @@ private:
     std::array<double,3> q;
 
     // Private methods
-    void performCircularPermutation(int i, int j, int k);
+    void compute_a();
+    bool circularPermutation(int& i, int &j, int& k);
+    void compute_p_and_q();
+    void compute_b();
+    void compute_c();
+    void compute_g();
+    void compute_d();
+    void compute_e();
 
 public:
     HctElement(triangle elementTriangle);

@@ -24,7 +24,7 @@ public:
     triangle& operator=(triangle&& other);
     void affiche();
 
-    void getPoint(int i);
+    point& getPoint(int i);
 };
 
 

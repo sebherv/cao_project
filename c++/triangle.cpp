@@ -39,6 +39,6 @@ void triangle::affiche() {
     std::cout << id << std::endl;
 }
 
-void triangle::getPoint(int i) {  
-
+point& triangle::getPoint(int i) {
+    return m_points[i];
 }
