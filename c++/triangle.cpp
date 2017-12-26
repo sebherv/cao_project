@@ -5,6 +5,9 @@
 #include "triangle.h"
 
 
+triangle::triangle() {
+
+}
 
 triangle::triangle(int idTriangle, point pt1, point pt2, point pt3) : id(idTriangle) {
     m_points[0] = pt1;
@@ -79,3 +82,14 @@ void triangle::getBarycentricFromCartesian(double x,
     lambda2 = ((y2-y1)*(x-x3) + (x1-x3)*(y-y3)) / ((y2-y3)*(x-x3)+ (x3-x2)*(y1-y3));
     lambda3 = 1 - lambda1 - lambda2;
 }
+
+bool triangle::isInside(double x, double y) {
+    double l1, l2, l3;
+    getBarycentricFromCartesian(x,y,l1,l2,l3);
+    if((l1 >= 0) && (l1 <= 1)
+       && (l2 >= 0) && (l2 <= 1) && (l3 >= 0 && l3 <= 1)) {
+        return  true;
+    }
+    return false;
+}
+

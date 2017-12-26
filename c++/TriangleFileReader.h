@@ -5,9 +5,9 @@
 #ifndef C_TRIANGLEFILEREADER_H
 #define C_TRIANGLEFILEREADER_H
 
+#include "htcElement.h"
 #include <string>
 #include <vector>
-#include "triangle.h"
 
 
 class TriangleFileReader {
@@ -16,7 +16,7 @@ class TriangleFileReader {
 
 public:
     TriangleFileReader(std::string filename, std::vector<point> pointList);
-    std::vector<triangle> parse();
+    std::vector<HctElement> parse();
 };
 
 

@@ -11,8 +11,8 @@ TriangleFileReader::TriangleFileReader(std::string filename,  std::vector<point>
     m_pointList = pointList;
 }
 
-std::vector<triangle> TriangleFileReader::parse() {
-    std::vector<triangle> parsedData;
+std::vector<HctElement> TriangleFileReader::parse() {
+    std::vector<HctElement> parsedData;
     //Ouvrir le fichier
     std::ifstream myfile(mFileName);
 
@@ -23,7 +23,7 @@ std::vector<triangle> TriangleFileReader::parse() {
         int idSommet3;
 
         myfile >> id_triangle >> idSommet1 >> idSommet2 >> idSommet3;
-        triangle newtriangle(id_triangle,
+        HctElement newtriangle(id_triangle,
                              m_pointList[idSommet1],
                              m_pointList[idSommet2],
                              m_pointList[idSommet3]);

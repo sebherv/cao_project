@@ -5,23 +5,23 @@
 #include <cmath>
 #include "htcElement.h"
 
-HctElement::HctElement(triangle elementTriangle)
-        : mTriangle(elementTriangle), mCoefficientCalculated(false) {}
+HctElement::HctElement(int idTriangle, point pt1, point pt2, point pt3)
+        : triangle(idTriangle, pt1,  pt2,  pt3), mCoefficientCalculated(false) {}
 
 
 bool HctElement::circularPermutation(int &i, int &j, int &k) {
-    if(i == 0 && j == 0 && k == 0) {
-        i = 1; j = 2; k = 3;
+    if(i == -1 && j == -1 && k == -1) {
+        i = 0; j = 1; k = 2;
         return true;
     }
 
-    if(i == 1) {
-        i = 2; j = 3; k = 1;
+    if(i == 0) {
+        i = 1; j = 2; k = 0;
         return true;
     }
 
-    if (i == 2) {
-        i = 3; j = 1; k = 2;
+    if (i == 1) {
+        i = 2; j = 0; k = 1;
         return true;
     }
 
@@ -36,27 +36,28 @@ void HctElement::computeCoefficients() {
     compute_d();
     compute_g();
     compute_e();
+    compute_om();
 }
 
 void HctElement::compute_a() {
     for(int i = 0; i < 3; i++) {
-        a[i] = mTriangle.getPoint(i).get_f();
+        a[i] = getPoint(i).get_f();
     }
 }
 
 void HctElement::compute_p_and_q() {
-    int i=0; int j=0; int k=0;
+    int i=-1; int j=-1; int k=-1;
 
     while (circularPermutation(i,j,k)) {
 
-        double aj_dx = mTriangle.getPoint(j).get_df_dx();
-        double aj_dy = mTriangle.getPoint(j).get_df_dy();
+        double aj_dx = getPoint(j).get_df_dx();
+        double aj_dy = getPoint(j).get_df_dy();
 
-        double ak_dx = mTriangle.getPoint(k).get_df_dx();
-        double ak_dy = mTriangle.getPoint(k).get_df_dy();
+        double ak_dx = getPoint(k).get_df_dx();
+        double ak_dy = getPoint(k).get_df_dy();
 
-        double aj_ak_x = mTriangle.getPoint(j).get_x() - mTriangle.getPoint(k).get_x();
-        double aj_ak_y = mTriangle.getPoint(j).get_y() - mTriangle.getPoint(k).get_y();
+        double aj_ak_x = getPoint(j).get_x() - getPoint(k).get_x();
+        double aj_ak_y = getPoint(j).get_y() - getPoint(k).get_y();
 
         double ak_aj_x = -aj_ak_x;
         double ak_aj_y = -aj_ak_y;
@@ -86,16 +87,16 @@ void HctElement::compute_d() {
 }
 
 void HctElement::compute_g() {
-    int i=0; int j=0; int k=0;
+    int i=-1; int j=-1; int k=-1;
     while(circularPermutation(i,j,k)) {
 
         // D'abord calculer u
-        double omega_x = mTriangle.getOmega_x();
-        double omega_y = mTriangle.getOmega_y();
-        double ak_x = mTriangle.getPoint(k).get_x();
-        double ak_y = mTriangle.getPoint(k).get_y();
-        double aj_x = mTriangle.getPoint(j).get_x();
-        double aj_y = mTriangle.getPoint(j).get_y();
+        double omega_x = getOmega_x();
+        double omega_y = getOmega_y();
+        double ak_x = getPoint(k).get_x();
+        double ak_y = getPoint(k).get_y();
+        double aj_x = getPoint(j).get_x();
+        double aj_y = getPoint(j).get_y();
 
         double den_u = pow(aj_x - ak_x,2.0) + pow(aj_y - ak_y,2.0);
         double num_u = 2 * ((omega_x - ak_x) * (aj_x - ak_x) + (omega_y - ak_y) * (aj_y - ak_y));
@@ -107,10 +108,7 @@ void HctElement::compute_g() {
 }
 
 void HctElement::compute_e() {
-    int i = 0;
-    int j = 0;
-    int k = 0;
-
+    int i=-1; int j=-1; int k=-1;
     while (circularPermutation(i, j, k)) {
         e[k] = (d[k] + g[i] + g[j])/3;
     }
@@ -123,12 +121,50 @@ void HctElement::compute_om() {
 double HctElement::interpolate(double x, double y) {
     if(!mCoefficientCalculated) {
         computeCoefficients();
+        generateSubTriangles();
     }
 
     // Dans quel sous-triangle le point est-il?
+    int subtriangleIndex = -1;
+    for(int i = 0; i < 3; i++) {
+        if(mSubTriangles[i].isInside(x,y)) {
+            subtriangleIndex = i;
+        }
+    }
 
     // Calculer l'interpolation.
-    return 0;
+    return compute(subtriangleIndex, x, y);
+}
+
+void HctElement::generateSubTriangles() {
+    mSubTriangles[0] = triangle(1, point(0,getOmega_x(), getOmega_y()), getPoint(2), getPoint(3));
+    mSubTriangles[1] = triangle(2, point(0,getOmega_x(), getOmega_y()), getPoint(3), getPoint(1));
+    mSubTriangles[2] = triangle(3, point(0,getOmega_x(), getOmega_y()), getPoint(1), getPoint(2));
+}
+
+double HctElement::compute(int triangleIndex, double x, double y) {
+    double l1, l2, l3;
+
+    mSubTriangles[triangleIndex].getBarycentricFromCartesian(x,y,l1, l2, l3);
+
+    int i, j, k;
+
+    if(triangleIndex == 0) {
+        i = 0; j = 1; k = 2;
+    }
+
+    double si = a[k] * pow(l3,3)
+                + 3 * c[k] * l2 * pow(l3,2)
+                + 3 * b[j] * pow(l2,2) * l3
+                + a[j] * pow(l3,3)
+                + 3 * d[k] *l1 * pow(l3,2)
+                + 6 * g[i] * l1 * l2 * l3
+                + 3 * d[j] * l1 * pow(l2,2)
+                + 3 * e[k] * pow(l1,2) * l3
+                + 3 * e[j] * pow(l1,2) * l2
+                + om * pow(l1,3);
+
+    return si;
 }
 
 

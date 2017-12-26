@@ -3,6 +3,8 @@
 #include "triangle.h"
 #include "TriangleFileReader.h"
 #include "Fonction_F.h"
+#include "pointResult.h"
+#include "HctInterpolator.h"
 #include <iostream>
 #include <fstream>
 
@@ -54,12 +56,37 @@ int main() {
 
     // Read input triangulation
     TriangleFileReader triangleFileReader("../../matlab/HCT.RES", pointList);
-    std::vector<triangle> triangleList = triangleFileReader.parse();
+    std::vector<HctElement> triangleList = triangleFileReader.parse();
 
     for(auto &current : triangleList ) {
         current.affiche();
     }
 
+    // Generate grid
+    int numSampleX = 30;
+    int numSampleY = 30;
+
+    std::vector<pointResult> pointResultVector(0);
+    HctInterpolator interpolator(triangleList);
+
+    for (int i = 0; i < numSampleX; i++) {
+        for (int j = 0; j < numSampleY; i++) {
+            // Generate point
+            double currentX = minX + (maxX - minX)/numSampleX;
+            double currentY = minX + (maxY - minY)/numSampleY;
+
+            // Compute current value
+            pointResultVector.push_back(interpolator.interpolate(currentX,currentY));
+
+        }
+    }
+
+    int i = 0;
+    for(auto &current : pointResultVector) {
+        std::cout << i << ": x = " << current.getx();
+        std::cout << ", y = " << current.gety();
+        std::cout << ", z = " << current.getz() << std::endl;
+    }
 
     return 0;
 }

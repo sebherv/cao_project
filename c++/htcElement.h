@@ -8,10 +8,9 @@
 #include <array>
 #include "triangle.h"
 
-class HctElement {
+class HctElement : public triangle{
 private:
 
-    triangle mTriangle;
     bool mCoefficientCalculated;
 
     std::array<double,3> a;
@@ -23,6 +22,7 @@ private:
     std::array<double,3> g;
     std::array<double,3> p;
     std::array<double,3> q;
+    std::array<triangle, 3> mSubTriangles;
 
     // Private methods
     bool circularPermutation(int& i, int &j, int& k);
@@ -35,11 +35,14 @@ private:
     void compute_e();
     void compute_om();
 
-public:
-    HctElement(triangle elementTriangle);
+    void generateSubTriangles();
     void computeCoefficients();
+
+public:
+    HctElement(int idTriangle, point pt1, point pt2, point pt3);
     double interpolate(double x, double y);
 
+    double compute(int triangleIndex, double x, double y);
 };
 
 

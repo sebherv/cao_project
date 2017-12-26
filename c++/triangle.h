@@ -18,7 +18,21 @@ private:
     double omega_x; // Coordonnée x du barycentre
     double omega_y; // Coordonnée y du barycentre
 
-    // Méthodes privées
+
+public:
+    triangle();
+    triangle(int idTriangle, point pt1, point pt2, point pt3);
+    triangle(const triangle& other);
+    triangle( triangle&& other);
+    triangle& operator=(const triangle& other);
+    triangle& operator=(triangle&& other);
+    void affiche();
+    bool isInside(double x, double y);
+
+    point& getPoint(int i);
+
+    double getOmega_x() const { return omega_x; }
+    double getOmega_y() const { return omega_y; }
     void getCartesianFromBarycentric(double lambda1,
                                      double lambda2,
                                      double lambda3,
@@ -30,19 +44,6 @@ private:
                                      double& lambda1,
                                      double& lambda2,
                                      double& lambda3);
-
-public:
-    triangle(int idTriangle, point pt1, point pt2, point pt3);
-    triangle(const triangle& other);
-    triangle( triangle&& other);
-    triangle& operator=(const triangle& other);
-    triangle& operator=(triangle&& other);
-    void affiche();
-
-    point& getPoint(int i);
-
-    double getOmega_x() const { return omega_x; }
-    double getOmega_y() const { return omega_y; }
 };
 
 
