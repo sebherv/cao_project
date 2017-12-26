@@ -15,6 +15,21 @@ class triangle {
 private:
     int id;
     std::array<point,3> m_points; // Liste des points constituant le triangle
+    double omega_x; // Coordonnée x du barycentre
+    double omega_y; // Coordonnée y du barycentre
+
+    // Méthodes privées
+    void getCartesianFromBarycentric(double lambda1,
+                                     double lambda2,
+                                     double lambda3,
+                                     double& x,
+                                     double& y);
+
+    void getBarycentricFromCartesian(double x,
+                                     double y,
+                                     double& lambda1,
+                                     double& lambda2,
+                                     double& lambda3);
 
 public:
     triangle(int idTriangle, point pt1, point pt2, point pt3);
@@ -25,6 +40,9 @@ public:
     void affiche();
 
     point& getPoint(int i);
+
+    double getOmega_x() const { return omega_x; }
+    double getOmega_y() const { return omega_y; }
 };
 
 
