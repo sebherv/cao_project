@@ -20,17 +20,14 @@ pointResult HctInterpolator::interpolate(double x, double y) {
     return pointResult(x, y, z, 0);
 }
 
-HctElement HctInterpolator::findElement(double x, double y) {
+HctElement & HctInterpolator::findElement(double x, double y) {
     for (auto &element : m_hctElements) {
-        double l1, l2, l3;
-        element.getBarycentricFromCartesian(x,y,l1,l2,l3);
-        if((l1 >= 0) && (l1 <= 1)
-           && (l2 >= 0) && (l2 <= 1) && (l3 >= 0 && l3 <= 1)) {
-            return  element;
+        if(element.isInside(x,y)) {
+            return element;
         }
     }
 
     // We should not arrive here
-    exit(-1);
+    throw std::domain_error("Error in HctInterpolator::findElement: element not found");
 }
 

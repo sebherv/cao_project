@@ -13,7 +13,7 @@ class HctInterpolator {
 private:
     std::vector<HctElement> m_hctElements;
 
-    HctElement findElement(double x, double y);
+    HctElement & findElement(double x, double y);
 
 
 

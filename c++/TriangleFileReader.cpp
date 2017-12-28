@@ -24,9 +24,9 @@ std::vector<HctElement> TriangleFileReader::parse() {
 
         myfile >> id_triangle >> idSommet1 >> idSommet2 >> idSommet3;
         HctElement newtriangle(id_triangle,
-                             m_pointList[idSommet1],
-                             m_pointList[idSommet2],
-                             m_pointList[idSommet3]);
+                             m_pointList[idSommet1-1],
+                             m_pointList[idSommet2-1],
+                             m_pointList[idSommet3-1]);
 
         parsedData.push_back(newtriangle);
     }

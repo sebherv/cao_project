@@ -69,17 +69,23 @@ int main() {
     std::vector<pointResult> pointResultVector(0);
     HctInterpolator interpolator(triangleList);
 
-    for (int i = 0; i < numSampleX; i++) {
-        for (int j = 0; j < numSampleY; i++) {
+    for (int i = 0; i <= numSampleX; i++) {
+        for (int j = 0; j <= numSampleY; j++) {
             // Generate point
-            double currentX = minX + (maxX - minX)/numSampleX;
-            double currentY = minX + (maxY - minY)/numSampleY;
+            double currentX = minX + ((maxX - minX) / numSampleX) * i;
+            double currentY = minY + ((maxY - minY) / numSampleY) * j;
+            try {
 
-            // Compute current value
-            pointResultVector.push_back(interpolator.interpolate(currentX,currentY));
+                // Compute current value
+                pointResultVector.push_back(interpolator.interpolate(currentX, currentY));
 
+            } catch (const std::exception &e) {
+                std::cout << e.what();
+                return -1;
+            }
         }
     }
+
 
     int i = 0;
     for(auto &current : pointResultVector) {
@@ -87,6 +93,7 @@ int main() {
         std::cout << ", y = " << current.gety();
         std::cout << ", z = " << current.getz() << std::endl;
     }
+    std::cout << "Program ended!" << std::endl;
 
     return 0;
 }

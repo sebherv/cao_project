@@ -122,6 +122,7 @@ double HctElement::interpolate(double x, double y) {
     if(!mCoefficientCalculated) {
         computeCoefficients();
         generateSubTriangles();
+        mCoefficientCalculated = true;
     }
 
     // Dans quel sous-triangle le point est-il?
@@ -132,14 +133,19 @@ double HctElement::interpolate(double x, double y) {
         }
     }
 
+    if(subtriangleIndex == -1) {
+        // We should not arrive here
+        throw std::domain_error("Error in HctInterpolator::interpolate: subtriangle not found");
+    }
+
     // Calculer l'interpolation.
     return compute(subtriangleIndex, x, y);
 }
 
 void HctElement::generateSubTriangles() {
-    mSubTriangles[0] = triangle(1, point(0,getOmega_x(), getOmega_y()), getPoint(2), getPoint(3));
-    mSubTriangles[1] = triangle(2, point(0,getOmega_x(), getOmega_y()), getPoint(3), getPoint(1));
-    mSubTriangles[2] = triangle(3, point(0,getOmega_x(), getOmega_y()), getPoint(1), getPoint(2));
+    mSubTriangles[0] = triangle(id*100 + 1, point(0,getOmega_x(), getOmega_y()), getPoint(1), getPoint(2));
+    mSubTriangles[1] = triangle(id*100 + 2, point(0,getOmega_x(), getOmega_y()), getPoint(2), getPoint(0));
+    mSubTriangles[2] = triangle(id*100 + 3, point(0,getOmega_x(), getOmega_y()), getPoint(0), getPoint(1));
 }
 
 double HctElement::compute(int triangleIndex, double x, double y) {
@@ -151,6 +157,10 @@ double HctElement::compute(int triangleIndex, double x, double y) {
 
     if(triangleIndex == 0) {
         i = 0; j = 1; k = 2;
+    } else if(triangleIndex == 1) {
+        i = 1; j = 2; k = 0;
+    } else if (triangleIndex == 2) {
+        i = 2; j = 0; k = 1;
     }
 
     double si = a[k] * pow(l3,3)

@@ -13,11 +13,12 @@
 
 class triangle {
 private:
-    int id;
     std::array<point,3> m_points; // Liste des points constituant le triangle
     double omega_x; // Coordonnée x du barycentre
     double omega_y; // Coordonnée y du barycentre
 
+protected:
+    int id;
 
 public:
     triangle();
@@ -34,8 +35,8 @@ public:
     double getOmega_x() const { return omega_x; }
     double getOmega_y() const { return omega_y; }
     void getCartesianFromBarycentric(double lambda1,
-                                     double lambda2,
-                                     double lambda3,
+                                     double l2,
+                                     double l3,
                                      double& x,
                                      double& y);
 
