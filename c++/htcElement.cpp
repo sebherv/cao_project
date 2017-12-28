@@ -56,8 +56,8 @@ void HctElement::compute_p_and_q() {
         double ak_dx = getPoint(k).get_df_dx();
         double ak_dy = getPoint(k).get_df_dy();
 
-        double aj_ak_x = getPoint(j).get_x() - getPoint(k).get_x();
-        double aj_ak_y = getPoint(j).get_y() - getPoint(k).get_y();
+        double aj_ak_x = getPoint(k).get_x() - getPoint(j).get_x();
+        double aj_ak_y = getPoint(k).get_y() - getPoint(j).get_y();
 
         double ak_aj_x = -aj_ak_x;
         double ak_aj_y = -aj_ak_y;
@@ -69,20 +69,21 @@ void HctElement::compute_p_and_q() {
 }
 
 void HctElement::compute_b() {
-    for(int i = 0; i < 3; i++) {
-        b[i] = a[i] + p[i]/3;
+    for(int j = 0; j < 3; j++) {
+        b[j] = a[j] + p[j]/3;
     }
 }
 
 void HctElement::compute_c() {
-    for(int i = 0; i < 3; i++) {
-        c[i] = a[i] + q[i]/3;
+    for(int k = 0; k < 3; k++) {
+        c[k] = a[k] + q[k]/3;
     }
 }
 
+
 void HctElement::compute_d() {
-    for(int i = 0; i < 3; i++) {
-        d[i] = (a[i] + b[i] + c[i])/3;
+    for(int k = 0; k < 3; k++) {
+        d[k] = (a[k] + b[k] + c[k])/3;
     }
 }
 
@@ -98,8 +99,8 @@ void HctElement::compute_g() {
         double aj_x = getPoint(j).get_x();
         double aj_y = getPoint(j).get_y();
 
-        double den_u = pow(aj_x - ak_x,2.0) + pow(aj_y - ak_y,2.0);
-        double num_u = 2 * ((omega_x - ak_x) * (aj_x - ak_x) + (omega_y - ak_y) * (aj_y - ak_y));
+        double den_u = pow(ak_x - aj_x,2.0) + pow(ak_y - aj_y,2.0);
+        double num_u = 2 * ((ak_x - omega_x) * (ak_x - aj_x) + (ak_y - omega_y) * (ak_y - aj_y));
         double u = num_u / den_u;
 
         g[i] = (2*(d[k]+d[j]) + (4-3*u)*c[k] + (u-2)*a[k] + (3*u-2)*b[j] - u*a[j]/4);
@@ -115,7 +116,7 @@ void HctElement::compute_e() {
 }
 
 void HctElement::compute_om() {
-    om = (e[1] + e[2] + e[3])/3;
+    om = (e[0] + e[1] + e[2])/3;
 }
 
 double HctElement::interpolate(double x, double y) {
@@ -166,7 +167,7 @@ double HctElement::compute(int triangleIndex, double x, double y) {
     double si = a[k] * pow(l3,3)
                 + 3 * c[k] * l2 * pow(l3,2)
                 + 3 * b[j] * pow(l2,2) * l3
-                + a[j] * pow(l3,3)
+                + a[j] * pow(l2,3)
                 + 3 * d[k] *l1 * pow(l3,2)
                 + 6 * g[i] * l1 * l2 * l3
                 + 3 * d[j] * l1 * pow(l2,2)

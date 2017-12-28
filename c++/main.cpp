@@ -63,8 +63,8 @@ int main() {
     }
 
     // Generate grid
-    int numSampleX = 30;
-    int numSampleY = 30;
+    int numSampleX = 10;
+    int numSampleY = 10;
 
     std::vector<pointResult> pointResultVector(0);
     HctInterpolator interpolator(triangleList);
