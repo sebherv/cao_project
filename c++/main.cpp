@@ -89,9 +89,15 @@ int main() {
 
     int i = 0;
     for(auto &current : pointResultVector) {
+        // Calculer l'erreur:
+        current.seterr(Fonction_F::getf(current.getx(), current.gety()) - current.getz());
+
+
         std::cout << i << ": x = " << current.getx();
         std::cout << ", y = " << current.gety();
-        std::cout << ", z = " << current.getz() << std::endl;
+        std::cout << ", z = " << current.getz();
+        std::cout << ", ERR = " << current.geterr() << std::endl;
+
     }
     std::cout << "Program ended!" << std::endl;
 

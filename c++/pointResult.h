@@ -12,6 +12,7 @@ private:
     double m_y;
     double m_z;
     double m_err;
+
 public:
     pointResult();
     pointResult(double x, double y, double z, double err);
@@ -21,6 +22,7 @@ public:
     double getz() const;
     double geterr() const;
 
+    void seterr(double m_err);
 };
 
 

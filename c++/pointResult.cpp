@@ -31,4 +31,8 @@ double pointResult::geterr() const {
     return m_err;
 }
 
+void pointResult::seterr(double m_err) {
+    pointResult::m_err = m_err;
+}
+
 
