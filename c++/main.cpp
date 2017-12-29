@@ -7,6 +7,7 @@
 #include "HctInterpolator.h"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 
 int main() {
@@ -92,18 +93,26 @@ int main() {
         // Calculer l'erreur:
         current.seterr(Fonction_F::getf(current.getx(), current.gety()) - current.getz());
 
-
-//        std::cout << i << ": x = " << current.getx();
-//        std::cout << ",\t y = " << current.gety();
-//        std::cout << ",\t z = " << current.getz();
-//        std::cout << ",\t ERR = " << current.geterr() << std::endl;
-
         std::cout << current.getx();
         std::cout << " " << current.gety();
         std::cout << " " << current.getz();
         std::cout << " " << current.geterr() << std::endl;
 
     }
+
+    double errmin = pointResultVector[0].geterr();
+    double errmax = pointResultVector[0].geterr();
+    for(auto &current : pointResultVector) {
+        if(std::abs(errmin) > std::abs(current.geterr())) {
+            errmin = current.geterr();
+        }
+
+        if(std::abs(errmax) < std::abs(current.geterr())) {
+            errmax = current.geterr();
+        }
+    }
+    std::cout << "Error min: " << errmin << std::endl;
+    std::cout << "Error max: " << errmax << std::endl;
     std::cout << "Program ended!" << std::endl;
 
     return 0;
