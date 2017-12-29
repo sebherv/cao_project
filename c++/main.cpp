@@ -93,10 +93,15 @@ int main() {
         current.seterr(Fonction_F::getf(current.getx(), current.gety()) - current.getz());
 
 
-        std::cout << i << ": x = " << current.getx();
-        std::cout << ", y = " << current.gety();
-        std::cout << ", z = " << current.getz();
-        std::cout << ", ERR = " << current.geterr() << std::endl;
+//        std::cout << i << ": x = " << current.getx();
+//        std::cout << ",\t y = " << current.gety();
+//        std::cout << ",\t z = " << current.getz();
+//        std::cout << ",\t ERR = " << current.geterr() << std::endl;
+
+        std::cout << current.getx();
+        std::cout << " " << current.gety();
+        std::cout << " " << current.getz();
+        std::cout << " " << current.geterr() << std::endl;
 
     }
     std::cout << "Program ended!" << std::endl;

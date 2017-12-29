@@ -2,7 +2,7 @@
 // Created by anais on 19/12/2017.
 //
 
-#include <iostream>
+
 #include <cmath>
 #include "Fonction_F.h"
 

@@ -103,7 +103,7 @@ void HctElement::compute_g() {
         double num_u = 2 * ((ak_x - omega_x) * (ak_x - aj_x) + (ak_y - omega_y) * (ak_y - aj_y));
         double u = num_u / den_u;
 
-        g[i] = (2*(d[k]+d[j]) + (4-3*u)*c[k] + (u-2)*a[k] + (3*u-2)*b[j] - u*a[j]/4);
+        g[i] = (2*(d[k]+d[j]) + (4-3*u)*c[k] + (u-2)*a[k] + (3*u-2)*b[j] - u*a[j])/4;
     }
 
 }
