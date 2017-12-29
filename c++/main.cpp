@@ -113,6 +113,16 @@ int main() {
     }
     std::cout << "Error min: " << errmin << std::endl;
     std::cout << "Error max: " << errmax << std::endl;
+
+    // calcul à des points précis:
+    pointResult point1 = interpolator.interpolate(2.5,0.8);
+    pointResult point2 = interpolator.interpolate(0.2, 1.1);
+    pointResult point3 = interpolator.interpolate(2.9, 2.5);
+
+    std::cout << "Point (2.5, 0.8): " << point1.getz() << std::endl;
+    std::cout << "Point (0.2, 1.1): " << point2.getz() << std::endl;
+    std::cout << "Point (2.9, 2.5): " << point3.getz() << std::endl;
+
     std::cout << "Program ended!" << std::endl;
 
     return 0;
