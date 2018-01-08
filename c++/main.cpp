@@ -8,6 +8,8 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <algorithm>
+#include <time.h>
 
 
 int main() {
@@ -59,10 +61,6 @@ int main() {
     TriangleFileReader triangleFileReader("../../matlab/HCT.RES", pointList);
     std::vector<HctElement> triangleList = triangleFileReader.parse();
 
-    for(auto &current : triangleList ) {
-        current.affiche();
-    }
-
     // Generate grid
     int numSampleX = 10;
     int numSampleY = 10;
@@ -88,7 +86,6 @@ int main() {
     }
 
 
-    int i = 0;
     for(auto &current : pointResultVector) {
         // Calculer l'erreur:
         current.seterr(Fonction_F::getf(current.getx(), current.gety()) - current.getz());
