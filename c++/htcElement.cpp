@@ -98,7 +98,7 @@ void HctElement::compute_g() {
         double ak_y = getPoint(k).get_y();
         double aj_x = getPoint(j).get_x();
         double aj_y = getPoint(j).get_y();
-        
+
         double den_u = (ak_x - aj_x)*(ak_x - aj_x) +(ak_y - aj_y)*(ak_y - aj_y);
         double num_u = 2 * ((ak_x - omega_x) * (ak_x - aj_x) + (ak_y - omega_y) * (ak_y - aj_y));
         double u = num_u / den_u;
@@ -177,6 +177,12 @@ double HctElement::compute(int triangleIndex, double x, double y) {
 
     return si;
 }
+
+/*
+std::string HctElement::getOutputLine() {
+    return "Coucou";
+}
+*/
 
 
 

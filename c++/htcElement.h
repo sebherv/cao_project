@@ -43,6 +43,7 @@ public:
     double interpolate(double x, double y);
 
     double compute(int triangleIndex, double x, double y);
+    std::string getOutputLine();
 };
 
 
