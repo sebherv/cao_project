@@ -3,6 +3,7 @@
 #include "triangle.h"
 #include "TriangleFileReader.h"
 #include "Fonction_F.h"
+#include "Fonction_G.h"
 #include "pointResult.h"
 #include "HctInterpolator.h"
 #include <iostream>
@@ -119,6 +120,69 @@ int main() {
     std::cout << "Point (2.5, 0.8): " << point1.getz() << std::endl;
     std::cout << "Point (0.2, 1.1): " << point2.getz() << std::endl;
     std::cout << "Point (2.9, 2.5): " << point3.getz() << std::endl;
+
+    // DEBUT TRAITEMENT G
+
+    for(it=pointList.begin(); it!=pointList.end(); it++) {
+
+        std::cout << it->get_id() << ", " << it->get_x() << ", " << it->get_y() << std::endl;
+        it->set_f(Fonction_G::getg(it->get_x(),it->get_y() ));
+        it->set_df_dx(Fonction_G::getg_dx(it->get_x(),it->get_y() ));
+        it->set_df_dy(Fonction_G::getg_dy(it->get_x(),it->get_y() ));
+    }
+
+//Extrema
+    std::cout << "minX = " << minX << "; maxX = " << maxX << std::endl;
+    std::cout << "minY = " << minY << "; maxY = " << maxY << std::endl;
+
+    for (int i = 0; i <= numSampleX; i++) {
+        for (int j = 0; j <= numSampleY; j++) {
+            // Generate point
+            double currentX = minX + ((maxX - minX) / numSampleX) * i;
+            double currentY = minY + ((maxY - minY) / numSampleY) * j;
+            try {
+
+                // Compute current value
+                pointResultVector.push_back(interpolator.interpolate(currentX, currentY));
+
+            } catch (const std::exception &e) {
+                std::cout << e.what();
+                return -1;
+            }
+        }
+    }
+
+    for(auto &current : pointResultVector) {
+        // Calculer l'erreur:
+        current.seterr(Fonction_F::getf(current.getx(), current.gety()) - current.getz());
+
+        std::cout << current.getx();
+        std::cout << " " << current.gety();
+        std::cout << " " << current.getz();
+        std::cout << " " << current.geterr() << std::endl;
+
+    }
+
+    for(auto &current : pointResultVector) {
+        if(std::abs(errmin) > std::abs(current.geterr())) {
+            errmin = current.geterr();
+        }
+
+        if(std::abs(errmax) < std::abs(current.geterr())) {
+            errmax = current.geterr();
+        }
+    }
+    std::cout << "Error min: " << errmin << std::endl;
+    std::cout << "Error max: " << errmax << std::endl;
+
+    // calcul à des points précis:
+
+    std::cout << "Point (2.5, 0.8): " << point1.getz() << std::endl;
+    std::cout << "Point (0.2, 1.1): " << point2.getz() << std::endl;
+    std::cout << "Point (2.9, 2.5): " << point3.getz() << std::endl;
+
+
+    
 
     std::cout << "Program ended!" << std::endl;
 
