@@ -98,8 +98,8 @@ void HctElement::compute_g() {
         double ak_y = getPoint(k).get_y();
         double aj_x = getPoint(j).get_x();
         double aj_y = getPoint(j).get_y();
-
-        double den_u = pow(ak_x - aj_x,2.0) + pow(ak_y - aj_y,2.0);
+        
+        double den_u = (ak_x - aj_x)*(ak_x - aj_x) +(ak_y - aj_y)*(ak_y - aj_y);
         double num_u = 2 * ((ak_x - omega_x) * (ak_x - aj_x) + (ak_y - omega_y) * (ak_y - aj_y));
         double u = num_u / den_u;
 
@@ -164,16 +164,16 @@ double HctElement::compute(int triangleIndex, double x, double y) {
         i = 2; j = 0; k = 1;
     }
 
-    double si = a[k] * pow(l3,3)
-                + 3 * c[k] * l2 * pow(l3,2)
-                + 3 * b[j] * pow(l2,2) * l3
-                + a[j] * pow(l2,3)
-                + 3 * d[k] *l1 * pow(l3,2)
+    double si = a[k] * l3*l3*l3
+                + 3 * c[k] * l2 * l3*l3
+                + 3 * b[j] * l2*l2 * l3
+                + a[j] * l2*l2*l2
+                + 3 * d[k] *l1 * l3*l3
                 + 6 * g[i] * l1 * l2 * l3
-                + 3 * d[j] * l1 * pow(l2,2)
-                + 3 * e[k] * pow(l1,2) * l3
-                + 3 * e[j] * pow(l1,2) * l2
-                + om * pow(l1,3);
+                + 3 * d[j] * l1 * l2*l2
+                + 3 * e[k] * l1*l1 * l3
+                + 3 * e[j] * l1*l1 * l2
+                + om * l1*l1*l1;
 
     return si;
 }
