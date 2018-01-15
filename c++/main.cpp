@@ -113,13 +113,13 @@ int main() {
     std::cout << "Error max: " << errmax << std::endl;
 
     // calcul à des points précis:
-    pointResult point1 = interpolatorF.interpolate(2.5,0.8);
-    pointResult point2 = interpolatorF.interpolate(0.2, 1.1);
-    pointResult point3 = interpolatorF.interpolate(2.9, 2.5);
+    pointResult point1F = interpolatorF.interpolate(2.5,0.8);
+    pointResult point2F = interpolatorF.interpolate(0.2, 1.1);
+    pointResult point3F = interpolatorF.interpolate(2.9, 2.5);
 
-    std::cout << "Point (2.5, 0.8): " << point1.getz() << std::endl;
-    std::cout << "Point (0.2, 1.1): " << point2.getz() << std::endl;
-    std::cout << "Point (2.9, 2.5): " << point3.getz() << std::endl;
+    std::cout << "Point (2.5, 0.8): " << point1F.getz() << std::endl;
+    std::cout << "Point (0.2, 1.1): " << point2F.getz() << std::endl;
+    std::cout << "Point (2.9, 2.5): " << point3F.getz() << std::endl;
 
     // DEBUT TRAITEMENT G
 
@@ -183,10 +183,13 @@ int main() {
     std::cout << "Error max: " << errmax << std::endl;
 
     // calcul à des points précis:
+    pointResult point1G = interpolatorG.interpolate(2.5,0.8);
+    pointResult point2G = interpolatorG.interpolate(0.2, 1.1);
+    pointResult point3G = interpolatorG.interpolate(2.9, 2.5);
 
-    std::cout << "Point (2.5, 0.8): " << point1.getz() << std::endl;
-    std::cout << "Point (0.2, 1.1): " << point2.getz() << std::endl;
-    std::cout << "Point (2.9, 2.5): " << point3.getz() << std::endl;
+    std::cout << "Point (2.5, 0.8): " << point1G.getz() << std::endl;
+    std::cout << "Point (0.2, 1.1): " << point2G.getz() << std::endl;
+    std::cout << "Point (2.9, 2.5): " << point3G.getz() << std::endl;
 
 
 
