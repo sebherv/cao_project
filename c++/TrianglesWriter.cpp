@@ -7,10 +7,9 @@
 
 std::string TrianglesWriter::generateOutputContent(std::vector<HctElement> &triangleList) {
 
-    std::stringstream outputString();
+    std::string outputString("");
     for(auto& current : triangleList) {
-        //outputString << current.getOutputLine();
-
+        outputString += current.getOutputLine();
     }
-    return std::string();
+    return outputString;
 }

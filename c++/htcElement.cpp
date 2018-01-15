@@ -3,6 +3,8 @@
 //
 
 #include <cmath>
+#include <string>
+#include <sstream>
 #include "htcElement.h"
 
 HctElement::HctElement(int idTriangle, point pt1, point pt2, point pt3)
@@ -178,11 +180,21 @@ double HctElement::compute(int triangleIndex, double x, double y) {
     return si;
 }
 
-/*
+
 std::string HctElement::getOutputLine() {
-    return "Coucou";
+
+    std::ostringstream oss;
+
+    oss << id << "\t";
+
+    for(int i = 0; i < 3 ; i++) {
+        oss << getPoint(i).get_id() << "\t";
+    }
+    oss << "\n";
+
+    return oss.str();
 }
-*/
+
 
 
 
