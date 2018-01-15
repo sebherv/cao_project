@@ -1,10 +1,10 @@
-#include "point.h"
+#include "Point.h"
 #include "PointFileReader.h"
-#include "triangle.h"
+#include "Triangle.h"
 #include "TriangleFileReader.h"
 #include "Fonction_F.h"
 #include "Fonction_G.h"
-#include "pointResult.h"
+#include "PointResult.h"
 #include "HctInterpolator.h"
 #include <iostream>
 #include <fstream>

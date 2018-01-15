@@ -9,7 +9,7 @@ double Fonction_G::getg(double x, double y) {
 }
 
 double Fonction_G::getg_dx(double x, double y) {
-    return 2*y*y-10*x*y+10*y;
+    return -2*y*y-10*x*y+10*y;
 }
 
 double Fonction_G::getg_dy(double x, double y) {

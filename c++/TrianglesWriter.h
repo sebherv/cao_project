@@ -6,7 +6,7 @@
 #define C_TRIANGLESWRITER_H
 
 #include <string>
-#include "htcElement.h"
+#include "HtcElement.h"
 
 
 

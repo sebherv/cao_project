@@ -1,7 +1,7 @@
 //
 // Created by Sebastien Hervieu on 18/12/2017.
 //
-#include "triangle.h"
+#include "Triangle.h"
 #include <cmath>
 #include <iostream>
 

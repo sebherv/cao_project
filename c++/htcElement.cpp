@@ -5,7 +5,7 @@
 #include <cmath>
 #include <string>
 #include <sstream>
-#include "htcElement.h"
+#include "HtcElement.h"
 
 HctElement::HctElement(int idTriangle, point pt1, point pt2, point pt3)
         : triangle(idTriangle, pt1,  pt2,  pt3), mCoefficientCalculated(false) {}

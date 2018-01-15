@@ -6,7 +6,7 @@
 #define C_TRIANGLE_H
 
 
-#include "point.h"
+#include "Point.h"
 #include <vector>
 #include <array>
 

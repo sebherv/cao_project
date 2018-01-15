@@ -6,8 +6,8 @@
 #define C_HCTINTERPOLATOR_H
 
 
-#include "htcElement.h"
-#include "pointResult.h"
+#include "HtcElement.h"
+#include "PointResult.h"
 
 class HctInterpolator {
 private:

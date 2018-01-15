@@ -6,7 +6,7 @@
 #define C_POINTFILEREADER_H
 #include <string>
 #include <vector>
-#include "point.h"
+#include "Point.h"
 
 class PointFileReader {
     std::string mFileName;

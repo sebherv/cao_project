@@ -5,7 +5,7 @@
 #ifndef C_TRIANGLEFILEREADER_H
 #define C_TRIANGLEFILEREADER_H
 
-#include "htcElement.h"
+#include "HtcElement.h"
 #include <string>
 #include <vector>
 

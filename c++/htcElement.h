@@ -6,7 +6,7 @@
 #define C_HTCELEMENT_H
 
 #include <array>
-#include "triangle.h"
+#include "Triangle.h"
 
 class HctElement : public triangle{
 private:
