@@ -15,6 +15,7 @@ public:
     double getf(double x, double y) override;
     double getf_dx(double x, double y) override;
     double getf_dy(double x, double y) override;
+    std::string getFunctionLabel() override;
 };
 
 #endif //C_FONCTION_F_H

@@ -55,10 +55,14 @@ public:
     std::string getPointListValues();
     std::string getPointListErrors();
 
+    // Generate string containing data for the results file
+    std::string getResultFileData();
+
     // Virtual methods
     virtual double getf(double x, double y) = 0;
     virtual double getf_dx(double x, double y) = 0;
     virtual double getf_dy(double x, double y) = 0;
+    virtual std::string getFunctionLabel() = 0;
 
 
 };

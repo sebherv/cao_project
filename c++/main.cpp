@@ -88,6 +88,15 @@ int main() {
     // Output Formated File
     std::ostringstream oss;
     oss << fInterpolator.getTriangleListString();
+    oss << std::endl;
+
+    oss << fInterpolator.getResultFileData();
+    oss << gInterpolator.getResultFileData();
+
+    std::ofstream resultFile;
+    resultFile.open("HCT.RES");
+    resultFile << oss.str();
+    resultFile.close();
 
     std::cout << "Program ended!" << std::endl;
 

@@ -28,6 +28,9 @@ void FunctionInterpolator::interpolate() {
 
     // Compute Error
     computeError();
+
+    // Compute at specific points
+    computeSpecificPoints();
 }
 
 void FunctionInterpolator::computePointValues() {
@@ -130,4 +133,38 @@ std::string FunctionInterpolator::getPointListValues() {
 std::string FunctionInterpolator::getPointListErrors() {
     PointListWriter writer(m_pointResultVector);
     return writer.getPointErrorListStirng();
+}
+
+std::string FunctionInterpolator::getResultFileData() {
+    std::ostringstream oss;
+    oss << "Données pour ";
+    oss << getFunctionLabel();
+    oss << std::endl;
+
+    oss << "Liste des N points et valeurs de la fonction:" << std::endl;
+    oss << "i\t" << "xi\t" << "yi\t" << "f(xi,yi)\t" << "df/dx(xi,yi\t" << "df/dy(xi,yi" << std::endl;
+
+    for(auto& current : m_pointList) {
+        oss << current.get_id() << "\t";
+        oss << current.get_x() << "\t";
+        oss << current.get_y() << "\t";
+        oss << current.get_df_dx() << "\t";
+        oss << current.get_df_dy() << "\t";
+        oss << std::endl;
+    }
+
+    oss << std::endl;
+
+    oss << "Valeurs de l'interpolant: " << std::endl;
+    oss << "- au point (2.5, 0.8): " << m_point1.getz() << std::endl;
+    oss << "- au point (0.2, 1.1): " << m_point2.getz() << std::endl;
+    oss << "- au point (2.9, 2.5): " << m_point3.getz() << std::endl;
+
+    oss << std::endl;
+
+    oss << "Valeurs minimale et maximale de f - S : " << std::endl;
+    oss << "Err min = " << m_errmin;
+    oss << "Err max = " << m_errmax;
+
+    return oss.str();
 }
