@@ -24,7 +24,7 @@ gen_TRI=[V TRI]; %ajout du vecteur V des index des triangles k à gauche de TRI
 
 dlmwrite('HCT.RES',gen_TRI, ' ');
 
-%% Affichage des données
+%% Affichage des données de la fonction F
 
 p=11;
 q=11;
@@ -38,7 +38,7 @@ surf(TX,TY,TZ);
 xlabel('TX');
 ylabel('TY');
 zlabel('TZ');
-title('Interpolation des points');
+title('Interpolation des points de la fonction f');
 
 P=load('D:\Projet_CAO\c++\cmake-build-debug\ferrorlist.txt');
 PX=reshape(P(:,1),p,q)';
@@ -50,7 +50,7 @@ hP=surf(PX,PY,PZ);
 xlabel('PX');
 ylabel('PY');
 zlabel('PZ');
-title('Erreur interpolation');
+title('Erreur interpolation de la focntion f');
 
 [PX, PY]=meshgrid(0:2,0:1);
 
@@ -63,7 +63,44 @@ val=[PX(:) PY(:) PZ(:)];
 
 save ferrorlist.txt val -ascii
 
+%% Affichage des données de la fonction G
 
+p=11;
+q=11;
+T=load('D:\Projet_CAO\c++\cmake-build-debug\gpointlist.txt');
+TX=reshape(T(:,1),p,q)';
+TY=reshape(T(:,2),p,q)';
+TZ=reshape(T(:,3),p,q)';
+
+figure
+surf(TX,TY,TZ);
+xlabel('TX');
+ylabel('TY');
+zlabel('TZ');
+title('Interpolation des points de la fonction g');
+
+P=load('D:\Projet_CAO\c++\cmake-build-debug\gerrorlist.txt');
+PX=reshape(P(:,1),p,q)';
+PY=reshape(P(:,2),p,q)';
+PZ=reshape(P(:,3),p,q)';
+
+figure
+hP=surf(PX,PY,PZ);
+xlabel('PX');
+ylabel('PY');
+zlabel('PZ');
+title('Erreur interpolation de la fonction g');
+
+[PX, PY]=meshgrid(0:2,0:1);
+
+PZ=1-(1-PX).^2;
+PX=PX';
+PY=PY';
+PZ=PZ';
+
+val=[PX(:) PY(:) PZ(:)];
+
+save gerrorlist.txt val -ascii
 
 
 
