@@ -1,16 +1,15 @@
 #include "Point.h"
 #include "PointFileReader.h"
 #include "Triangle.h"
-#include "TriangleFileReader.h"
 #include "FInterpolator.h"
 #include "GInterpolator.h"
 #include "PointResult.h"
-#include "HctInterpolator.h"
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <algorithm>
 #include <time.h>
+#include <sstream>
 
 
 int main() {
@@ -58,9 +57,37 @@ int main() {
     FInterpolator fInterpolator(pointList, minX, maxX, minY, maxY);
     fInterpolator.interpolate();
 
-    // DEBUT TRAITEMENT G
+    // Interpolate f=y^2 - 2xy^2 - 5 x^2*y + 10xy +1
     GInterpolator gInterpolator(pointList, minX, maxX, minY, maxY);
     gInterpolator.interpolate();
+
+    // Generate f points list
+    std::ofstream fpointlist;
+    fpointlist.open("fpointlist.txt");
+    fpointlist << fInterpolator.getPointListValues();
+    fpointlist.close();
+
+    // Generate ferr points list
+    std::ofstream ferrorlist;
+    ferrorlist.open("ferrorlist.txt");
+    ferrorlist << fInterpolator.getPointListErrors();
+    ferrorlist.close();
+
+    // Generate g points list
+    std::ofstream gpointlist;
+    gpointlist.open("gpointlist.txt");
+    gpointlist << fInterpolator.getPointListValues();
+    gpointlist.close();
+
+    // Generate gerr points list
+    std::ofstream gerrorlist;
+    gerrorlist.open("gerrorlist.txt");
+    gerrorlist << fInterpolator.getPointListErrors();
+    gerrorlist.close();
+
+    // Output Formated File
+    std::ostringstream oss;
+    oss << fInterpolator.getTriangleListString();
 
     std::cout << "Program ended!" << std::endl;
 

@@ -48,6 +48,13 @@ public:
     // Perform all the interpolation for the numeric function
     void interpolate();
 
+    // Generate string containing list of triangles
+    std::string getTriangleListString();
+
+    // Generate string containing interpolated values and errors
+    std::string getPointListValues();
+    std::string getPointListErrors();
+
     // Virtual methods
     virtual double getf(double x, double y) = 0;
     virtual double getf_dx(double x, double y) = 0;

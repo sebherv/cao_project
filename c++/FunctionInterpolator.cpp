@@ -4,9 +4,12 @@
 
 #include "FunctionInterpolator.h"
 #include "TriangleFileReader.h"
+#include "TrianglesWriter.h"
+#include "PointListWriter.h"
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
+#include <sstream>
 
 FunctionInterpolator::FunctionInterpolator(std::vector<point> pointList, double minX, double maxX, double minY, double maxY)
 : m_minX(minX), m_maxX(maxX), m_minY(minY), m_maxY(maxY) {
@@ -105,4 +108,26 @@ void FunctionInterpolator::computeSpecificPoints() {
     m_point1 = mInterpolator.interpolate(2.5,0.8);
     m_point2 = mInterpolator.interpolate(0.2, 1.1);
     m_point3 = mInterpolator.interpolate(2.9, 2.5);
+}
+
+std::string FunctionInterpolator::getTriangleListString() {
+    std::ostringstream oss;
+    oss << "Liste des triangles: " << std::endl;
+
+    TrianglesWriter writer;
+    oss << writer.generateOutputContent(m_elementList);
+
+    oss << std::endl;
+
+    return oss.str();
+}
+
+std::string FunctionInterpolator::getPointListValues() {
+    PointListWriter writer(m_pointResultVector);
+    return writer.getPointValueListString();
+}
+
+std::string FunctionInterpolator::getPointListErrors() {
+    PointListWriter writer(m_pointResultVector);
+    return writer.getPointErrorListStirng();
 }

@@ -5,11 +5,16 @@
 #include <sstream>
 #include "TrianglesWriter.h"
 
+TrianglesWriter::TrianglesWriter() {
+
+}
+
 std::string TrianglesWriter::generateOutputContent(std::vector<HctElement> &triangleList) {
 
-    std::string outputString("");
+    std::ostringstream oss;
     for(auto& current : triangleList) {
-        outputString += current.getOutputLine();
+        oss << current.getOutputLine();
     }
-    return outputString;
+    return oss.str();
 }
+
