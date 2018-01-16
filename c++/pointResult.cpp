@@ -4,35 +4,35 @@
 
 #include "PointResult.h"
 
-pointResult::pointResult() {
+PointResult::PointResult() {
 
 }
 
-pointResult::pointResult(double x, double y, double z, double err) {
+PointResult::PointResult(double x, double y, double z, double err) {
     m_x = x;
     m_y = y;
     m_z = z;
     m_err = err;
 }
 
-double pointResult::getx() const {
+double PointResult::getx() const {
     return m_x;
 }
 
-double pointResult::gety() const {
+double PointResult::gety() const {
     return m_y;
 }
 
-double pointResult::getz() const {
+double PointResult::getz() const {
     return m_z;
 }
 
-double pointResult::geterr() const {
+double PointResult::geterr() const {
     return m_err;
 }
 
-void pointResult::seterr(double m_err) {
-    pointResult::m_err = m_err;
+void PointResult::seterr(double m_err) {
+    PointResult::m_err = m_err;
 }
 
 

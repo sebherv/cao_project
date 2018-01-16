@@ -5,11 +5,9 @@
 #include <cstdlib>
 #include "HctInterpolator.h"
 
-HctInterpolator::HctInterpolator(std::vector<HctElement> elements) {
-    m_hctElements = elements;
-}
+HctInterpolator::HctInterpolator() {}
 
-pointResult HctInterpolator::interpolate(double x, double y) {
+PointResult HctInterpolator::interpolate(double x, double y) {
     // Find element to which the point belongs
     HctElement element = findElement(x,y);
 
@@ -17,7 +15,7 @@ pointResult HctInterpolator::interpolate(double x, double y) {
     double z = element.interpolate(x,y);
 
     //  return
-    return pointResult(x, y, z, 0);
+    return PointResult(x, y, z, 0);
 }
 
 HctElement & HctInterpolator::findElement(double x, double y) {
@@ -29,5 +27,9 @@ HctElement & HctInterpolator::findElement(double x, double y) {
 
     // We should not arrive here
     throw std::domain_error("Error in HctInterpolator::findElement: element not found");
+}
+
+void HctInterpolator::setElements(std::vector<HctElement> elements) {
+    m_hctElements = elements;
 }
 

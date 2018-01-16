@@ -6,7 +6,7 @@
 #define C_POINTRESULT_H
 
 
-class pointResult {
+class PointResult {
 private:
     double m_x;
     double m_y;
@@ -14,8 +14,8 @@ private:
     double m_err;
 
 public:
-    pointResult();
-    pointResult(double x, double y, double z, double err);
+    PointResult();
+    PointResult(double x, double y, double z, double err);
 
     double getx() const;
     double gety() const;

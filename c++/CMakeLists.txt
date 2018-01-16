@@ -3,6 +3,6 @@ project(c__)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(c__ main.cpp Point.cpp Point.h Triangle.cpp Triangle.h PointFileReader.cpp PointFileReader.h TriangleFileReader.cpp TriangleFileReader.h Fonction_F.cpp Fonction_F.h HtcElement.cpp HtcElement.h PointResult.cpp PointResult.h HctInterpolator.cpp HctInterpolator.h Fonction_G.cpp Fonction_G.h TrianglesWriter.cpp TrianglesWriter.h)
+add_executable(c__ main.cpp Point.cpp Point.h Triangle.cpp Triangle.h PointFileReader.cpp PointFileReader.h TriangleFileReader.cpp TriangleFileReader.h FInterpolator.cpp FInterpolator.h HtcElement.cpp HtcElement.h PointResult.cpp PointResult.h HctInterpolator.cpp HctInterpolator.h GInterpolator.cpp GInterpolator.h TrianglesWriter.cpp TrianglesWriter.h FunctionInterpolator.cpp FunctionInterpolator.h)
 
 

@@ -18,9 +18,9 @@ private:
 
 
 public:
-    explicit HctInterpolator(std::vector<HctElement> elements);
-
-    pointResult interpolate(double x, double y);
+    explicit HctInterpolator();
+    void setElements(std::vector<HctElement> elements);
+    PointResult interpolate(double x, double y);
 };
 
 
