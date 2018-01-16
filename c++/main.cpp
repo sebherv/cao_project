@@ -76,13 +76,13 @@ int main() {
     // Generate g points list
     std::ofstream gpointlist;
     gpointlist.open("gpointlist.txt");
-    gpointlist << fInterpolator.getPointListValues();
+    gpointlist << gInterpolator.getPointListValues();
     gpointlist.close();
 
     // Generate gerr points list
     std::ofstream gerrorlist;
     gerrorlist.open("gerrorlist.txt");
-    gerrorlist << fInterpolator.getPointListErrors();
+    gerrorlist << gInterpolator.getPointListErrors();
     gerrorlist.close();
 
     // Output Formated File
