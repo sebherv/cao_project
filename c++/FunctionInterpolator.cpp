@@ -55,8 +55,8 @@ void FunctionInterpolator::generateHctElements() {
 
 void FunctionInterpolator::interpolateGrid() {
     // Generate grid
-    int numSampleX = 10;
-    int numSampleY = 10;
+    int numSampleX = 50;
+    int numSampleY = 50;
 
     mInterpolator.setElements(m_elementList);
 

@@ -26,8 +26,8 @@ dlmwrite('Triangle.RES',gen_TRI, ' ');
 
 %% Affichage des données de la fonction F
 
-p=11;
-q=11;
+p=51;
+q=51;
 T=load('D:\Projet_CAO\c++\cmake-build-debug\fpointlist.txt');
 TX=reshape(T(:,1),p,q)';
 TY=reshape(T(:,2),p,q)';
