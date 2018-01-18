@@ -163,8 +163,8 @@ std::string FunctionInterpolator::getResultFileData() {
     oss << std::endl;
 
     oss << "Valeurs minimale et maximale de f - S : " << std::endl;
-    oss << "Err min = " << m_errmin;
-    oss << "Err max = " << m_errmax;
+    oss << "Err min = " << m_errmin << std::endl;
+    oss << "Err max = " << m_errmax << std::endl;
 
     return oss.str();
 }
