@@ -46,7 +46,7 @@ void FunctionInterpolator::computePointValues() {
 
 void FunctionInterpolator::generateHctElements() {
     // Read input triangulation
-    TriangleFileReader triangleFileReader("../../matlab/HCT.RES", m_pointList);
+    TriangleFileReader triangleFileReader("../../matlab/Triangle.RES", m_pointList);
 
     // Initialize elements, set initial values
     m_elementList = triangleFileReader.parse();

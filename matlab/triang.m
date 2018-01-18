@@ -22,7 +22,7 @@ triplot(TRI,sortedPoints(:,2), sortedPoints(:,3));
 V=(1:size(TRI))';
 gen_TRI=[V TRI]; %ajout du vecteur V des index des triangles k à gauche de TRI 
 
-dlmwrite('HCT.RES',gen_TRI, ' ');
+dlmwrite('Triangle.RES',gen_TRI, ' ');
 
 %% Affichage des données de la fonction F
 
