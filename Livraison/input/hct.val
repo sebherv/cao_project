@@ -1,0 +1,20 @@
+
+
+                     Interpolation HCT de exp(x+y)
+                     -----------------------------
+
+VALEUR DE L'INTERPOLANT AU POINT  2.5, 0.8 : 27.031887
+
+VALEUR DE L'INTERPOLANT AU POINT  0.2, 1.1 : 3.6693233
+
+VALEUR DE L'INTERPOLANT AU POINT  2.9, 2.5 : 220.43111
+
+
+                   Interpolation HCT de y3-2xy2-5x2y+10xy+1
+                   ----------------------------------------
+
+VALEUR DE L'INTERPOLANT AU POINT  2.5, 0.8 : -6.6430379
+
+VALEUR DE L'INTERPOLANT AU POINT  0.2, 1.1 : 3.82705196
+
+VALEUR DE L'INTERPOLANT AU POINT  2.9, 2.5 : -52.233996
