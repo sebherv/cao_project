@@ -46,7 +46,7 @@ PY=reshape(P(:,2),p,q)';
 PZ=reshape(P(:,3),p,q)';
 
 figure
-hP=surf(PX,PY,PZ);
+surf(PX,PY,PZ);
 xlabel('PX');
 ylabel('PY');
 zlabel('PZ');
