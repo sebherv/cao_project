@@ -65,8 +65,6 @@ save ferrorlist.txt val -ascii
 
 %% Affichage des données de la fonction G
 
-p=11;
-q=11;
 T=load('D:\Projet_CAO\c++\cmake-build-debug\gpointlist.txt');
 TX=reshape(T(:,1),p,q)';
 TY=reshape(T(:,2),p,q)';
