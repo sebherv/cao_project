@@ -61,8 +61,6 @@ PZ=PZ';
 
 val=[PX(:) PY(:) PZ(:)];
 
-save ferrorlist.txt val -ascii
-
 %% Affichage des données de la fonction G
 
 T=load('D:\Projet_CAO\c++\cmake-build-debug\gpointlist.txt');
@@ -98,7 +96,6 @@ PZ=PZ';
 
 val=[PX(:) PY(:) PZ(:)];
 
-save gerrorlist.txt val -ascii
 
 
 
